@@ -8,6 +8,14 @@ export const Profile = () => {
       <header id="page-header">
         <h1 id="profile-name">Eric's Profile</h1>
       </header>
+
+      <nav id="menu">
+        <ul>
+          <li><a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors</a></li>
+          <li><a href="https://css-tricks.com/snippets/css/complete-guide-grid/">CSS Grid</a></li>
+          <li><a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">CSS Flexbox</a></li>
+        </ul>
+      </nav>
       
       <aside id="sidebar">
         <ul>
@@ -35,6 +43,7 @@ export const Profile = () => {
         <p>Here is some more info about me...</p>
 
         <table>
+          <div></div>
           <thead>
             <tr>
               <th>Id</th>
