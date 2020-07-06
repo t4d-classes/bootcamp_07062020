@@ -1,17 +1,15 @@
+// default import
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const HelloWorld = () => {
-
-  return React.createElement('h1', null, 'Hello World!');
-
-};
+// named import
+import { Profile } from './components/Profile';
 
 ReactDOM.render(
-  React.createElement(HelloWorld),
+  // React.createElement(HelloWorld),
+  <Profile />,
   document.querySelector('#root' /* select an element whose ID is 'root' */),
 );
-
 
 // // function declaration
 // function HelloWorld() {
