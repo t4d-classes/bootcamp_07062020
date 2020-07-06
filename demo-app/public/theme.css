@@ -15,6 +15,18 @@
 
 #page-header {
   grid-area: header;
+
+  background-color: navy;
+  color: white;
+  font-size: 3rem;
+
+  display: flex;
+  align-items: center;
+}
+
+#page-header > h1 {
+  color: white;
+  margin-left: 20px;
 }
 
 #sidebar {

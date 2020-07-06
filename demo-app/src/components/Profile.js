@@ -4,9 +4,9 @@ export const Profile = () => {
 
   return (
     <div className="layout">
-      
+
       <header id="page-header">
-        <h1>Profile</h1>
+        <h1 id="profile-name">Eric's Profile</h1>
       </header>
       
       <aside id="sidebar">
