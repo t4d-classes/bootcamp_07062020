@@ -1,4 +1,13 @@
-:root {
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+
+
+
+/* :root {
   font-family: arial;
 }
 
@@ -70,4 +79,4 @@ div:not(#root) > div {
   /* margin-left: auto;
   margin-right: auto;
   display: block;
-} */
+} */ */
