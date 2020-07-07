@@ -42,5 +42,207 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- <script>
+
+      'use strict';
+
+      let t;
+      console.log(typeof t);
+
+      t = 2;
+      console.log(typeof t);
+
+      t = 'hello!';
+      console.log(typeof t);
+
+      t = false;
+      console.log(typeof t);
+
+      t = Symbol();
+      console.log(typeof t);
+
+      t = null;
+      console.log(typeof t);
+
+      // object literal
+      t = {
+        firstName: 'Bob',
+      };
+      console.log(typeof t);
+
+      // array literal
+      t = [1,2,3,4];
+      t = [ { id: 1, name: 'a' }, { id: 2, name: 'b' } ];
+      console.log(typeof t);
+
+      t = function() {
+        console.log('hi!');
+      };
+
+      t(); // invoke
+      console.log(typeof t);
+
+      t.someNewProp = 'some value';
+      console.dir(t);
+
+
+
+
+
+    </script> -->
+    <script>
+
+      /*
+      // defining
+      function doIt(fn) {
+        console.log(fn('hi!'));
+      }
+
+      doIt(function message(msg /* where is msg coming from?) {
+        return msg;
+      });
+      */
+
+      /*
+      doIt(); // invoke
+      const doIt2 = doIt; // assigning the function object reference to doIt2
+      doIt2();
+      doIt();
+      */
+
+      /*
+      function outer(msg) {
+
+        // defining function inner, and returning a reference to it
+        return function inner() {
+          console.log(msg);
+        };
+      }
+
+      const fn = outer('hi!');
+      fn(); // invoking function inner
+      */
+
+      /*
+      const person = {
+        firstName: 'Bob',
+        lastName: 'Smith',
+        getFullName: function() {
+          return this.firstName + ' ' + this.lastName;
+        },
+      };
+
+      const person2 = {
+        firstName: 'Sally',
+        lastName: 'Smith',
+      };
+
+      person2.getFullName = person.getFullName;
+
+      console.log(person.getFullName());
+      console.log(person2.getFullName());
+      console.log(person.getFullName === person2.getFullName);
+
+      */
+
+    </script>
+    <!-- <script>
+
+      /*
+      const s = "hello";
+
+      const t = s + " world";
+
+      console.log(t);
+      console.log(t.length);
+      console.log(t.startsWith('he'));
+      */
+
+      /*
+      console.log(-1/0);
+      console.log(NaN === parseInt('yyyyy'));
+      console.log(isNaN(parseInt('yyyyy')));
+      console.log(typeof NaN);
+      console.log( Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON );
+
+      console.log(Number.MAX_SAFE_INTEGER + 1);
+      console.log(Number.MAX_SAFE_INTEGER + 2);
+      */
+
+      /*
+      if ([]) {
+        console.log('truthy');
+      } else {
+        console.log('falsy');
+      }
+      */
+
+      // falsy
+      // empty string
+      // zero
+      // false
+      // null
+      // undefined
+      // NaN
+
+      // console.log(0 || 0);
+
+      /*
+      function outputFullName(person) {
+        console.log(person.firstName + ' ' + person.lastName);
+      }
+
+      outputFullName({
+        firstName: 'Bob',
+        lastName: 'Smith',
+      });
+      */
+
+      /*
+      const person = {
+        firstName: 'Bob',
+        lastName: 'Smith',
+        address: {
+          street: '123 Oak Lane',
+          city: 'Oakville',
+        },
+        "some cool prop - this is awesome!": 42,
+      };
+
+      person.age = 23;
+      delete person.lastName;
+
+      const propName = 'age';
+
+      console.log(person[propName]);
+
+      console.log(Object.keys(person));
+
+
+      console.log(person);
+      */
+
+      const nums = [ 1, 2, 3, 4, 5 ];
+
+      /*
+      console.log(nums[2]);
+      nums[3] = 'f';
+      console.log(nums);
+      */
+
+      // perform side effect on an array, use forEach
+      nums.forEach(num => {
+        console.log(num);
+      });
+
+      // transforming an array
+      const doubleNums = nums.map(num => num * 2);
+      console.log(doubleNums);
+
+      // filtering out values
+      const numsGreaterThanTwo = nums.filter(num => num > 2);
+      console.log(numsGreaterThanTwo);
+
+    </script> -->
   </body>
 </html>
