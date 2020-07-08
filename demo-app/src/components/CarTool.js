@@ -8,6 +8,8 @@ import {
   StringFormControl,
   NumberFormControl,
 } from './FormControls';
+import { ToolHeader } from './ToolHeader';
+import { CarTable } from './CarTable';
 
 
 
@@ -51,32 +53,18 @@ export const CarTool = (props) => {
 
   return (
     <div className="car-tool">
-      <header>
-        <h1>Car Tool</h1>
-      </header>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Color</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cars.map(car => <tr key={car.id}>
-            <td>{car.id}</td>
-            <td className="text">{car.make}</td>
-            <td className="text">{car.model}</td>
-            <td>{car.year}</td>
-            <td>{car.color}</td>
-            <td className="number">{car.price}</td>
-          </tr>)}
-        </tbody>
-      </table>
+      <ToolHeader headerText="Car Tool" />
+      {/* React.createElement(CarTable, { cars: cars }); */}
+      <CarTable cars={cars} />
       <form>
+        {/*
+          
+          React.createElement(StringFormControl, { 
+            caption: 'Make', name: 'make',
+            value: carForm.make, onChange: change,
+          });
+        
+        */}
         <StringFormControl caption="Make" name="make"
           value={carForm.make} onChange={change} />
         <StringFormControl caption="Model" name="model"

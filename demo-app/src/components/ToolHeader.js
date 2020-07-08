@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './ToolHeader.css';
+
 export const ToolHeader = (props) => {
 
   return (
-    <header>
+    <header className="tool-header">
       <h1>{props.headerText}</h1>
     </header>
   );
