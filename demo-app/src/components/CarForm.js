@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import {
   StringFormControl,
@@ -28,9 +29,7 @@ export const CarForm = ({ buttonText, onSubmitCar }) => {
   };
 
   const submitCar = () => {
-
     onSubmitCar(carForm);
-
     setCarForm({
       make: '',
       model: '',
@@ -38,10 +37,7 @@ export const CarForm = ({ buttonText, onSubmitCar }) => {
       color: '',
       price: NaN,
     });
-
   };
-
-
   return (
     <form>
       {/*
@@ -66,4 +62,13 @@ export const CarForm = ({ buttonText, onSubmitCar }) => {
     </form>
   )
 
+};
+
+CarForm.defaultProps = {
+  buttonText: 'Submit Car',
+};
+
+CarForm.propTypes = {
+  buttonText: PropTypes.string,
+  onSubmitCar: PropTypes.func.isRequired,
 };
