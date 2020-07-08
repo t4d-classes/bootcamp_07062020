@@ -4,8 +4,6 @@ import { NumberInput } from './NumberInput';
 
 export const StringFormControl = (props) => {
 
-  props.onChange()
-
   return (
     <div>
       <label htmlFor={props.name + '-input'}>{props.caption}</label>
