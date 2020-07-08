@@ -2,20 +2,38 @@ import React, { useState } from 'react';
 
 import "./CarTool.css";
 
+const nanToValue = (x) => {
+  if (isNaN(x)) {
+    return '';
+  } else {
+    return x;
+  }
+};
+
+const valueToNaN = (x) => {
+  if (x.length === 0) {
+    return NaN;
+  } else {
+    return Number(x);
+  };
+}
+
 export const CarTool = (props) => {
 
   const [ carForm, setCarForm ] = useState({
     make: '',
     model: '',
-    year: 1900,
+    year: NaN,
     color: '',
-    price: 0,
+    price: NaN,
   });
 
   const change = (e) => {
     setCarForm({
       ...carForm,
-      [ e.target.name ]: e.target.value,
+      [ e.target.name ]: e.target.type === 'number'
+        ? valueToNaN(e.target.value)
+        : e.target.value,
     });
   };
 
@@ -61,8 +79,8 @@ export const CarTool = (props) => {
         </div>
         <div>
           <label>Year</label>
-          <input type="text" id="year-input" name="year"
-            value={carForm.year} onChange={change} />
+          <input type="number" id="year-input" name="year"
+            value={nanToValue(carForm.year)} onChange={change} />
         </div>
         <div>
           <label>Color</label>
@@ -71,8 +89,8 @@ export const CarTool = (props) => {
         </div>
         <div>
           <label>Price</label>
-          <input type="text" id="price-input" name="price"
-            value={carForm.price} onChange={change} />
+          <input type="number" id="price-input" name="price"
+            value={nanToValue(carForm.price)} onChange={change} />
         </div>
       </form>
     </div>

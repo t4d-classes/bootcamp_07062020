@@ -4,6 +4,8 @@ import './ColorTool.css';
 
 export const ColorTool = (props) => {
 
+  const [ colors, setColors ] = useState(props.colors.concat());
+
   const [
     colorForm, // state data
     setColorForm, // state update and re-render function
@@ -13,9 +15,11 @@ export const ColorTool = (props) => {
 
   const change = (e) => {
 
-    setColorForm({
+    setColorForm(/* creating a new object -> */ {
       // object spread operator
       ...colorForm, // copy the properties of the original color form object to the new object
+      // name: colorForm.name,
+      // hexcode: colorForm.hexcode,
 
       // computed property
       [ e.target.name ]: e.target.value,
@@ -29,7 +33,18 @@ export const ColorTool = (props) => {
 
   };
 
-  console.log(colorForm);
+  const addColor = () => {
+
+    setColors(colors.concat({
+      ...colorForm,
+      id: Math.max(...colors.map(c => c.id), 0) + 1,
+    }));
+
+    setColorForm({
+      name: '', hexcode: '',
+    });
+
+  };
 
   return (
     <div className="color-tool">
@@ -37,7 +52,7 @@ export const ColorTool = (props) => {
         <h1>Color Tool</h1>
       </header>
       <ul>
-        {props.colors.map( color => <li key={color.id}>
+        {colors.map( color => <li key={color.id}>
           {color.name}
         </li>)}
       </ul>
@@ -50,6 +65,7 @@ export const ColorTool = (props) => {
           <label htmlFor="hexcode-input">Hexcode</label>
           <input type="text" id="hexcode-input" name="hexcode" value={colorForm.hexcode} onChange={change} />
         </div>
+        <button type="button" onClick={addColor}>Add Color</button>
       </form>
     </div>
   );
