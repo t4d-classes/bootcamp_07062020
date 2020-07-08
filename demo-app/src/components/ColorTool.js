@@ -52,7 +52,7 @@ export const ColorTool = (props) => {
 
   return (
     <div className="color-tool">
-      <ToolHeader headerText="Color Tool" />
+      <ToolHeader headerText={ 'Color Tool' } />
       <ul>
         {colors.map( color => <li key={color.id}>
           {color.name}

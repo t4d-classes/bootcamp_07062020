@@ -3,7 +3,7 @@ import React from 'react';
 import { carsPropTypes } from '../propTypes/cars';
 import { CarViewRow } from './CarViewRow';
 
-export const CarTable = (props) => {
+export const CarTable = ({ cars }) => {
 
   return (
     <table>
@@ -18,9 +18,9 @@ export const CarTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {!props.cars.length
+        {!cars.length
           ? <tr><td colSpan="6">There are no cars.</td></tr>
-          : props.cars.map(car => <CarViewRow key={car.id} car={car} />)}
+          : cars.map(car => <CarViewRow key={car.id} car={car} />)}
       </tbody>
     </table>
   );
