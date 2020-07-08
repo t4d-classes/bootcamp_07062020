@@ -1,24 +1,19 @@
 import React, { useState } from 'react';
 
+import { valueToNaN } from '../utils';
+
 import "./CarTool.css";
 
-const nanToValue = (x) => {
-  if (isNaN(x)) {
-    return '';
-  } else {
-    return x;
-  }
-};
+import {
+  StringFormControl,
+  NumberFormControl,
+} from './FormControls';
 
-const valueToNaN = (x) => {
-  if (x.length === 0) {
-    return NaN;
-  } else {
-    return Number(x);
-  };
-}
+
 
 export const CarTool = (props) => {
+
+  const [ cars, setCars ] = useState(props.cars.concat());
 
   const [ carForm, setCarForm ] = useState({
     make: '',
@@ -37,7 +32,22 @@ export const CarTool = (props) => {
     });
   };
 
-  console.dir(carForm);
+  const addCar = () => {
+
+    setCars(cars.concat({
+      ...carForm,
+      id: Math.max(...cars.map(c => c.id), 0) + 1,
+    }));
+
+    setCarForm({
+      make: '',
+      model: '',
+      year: NaN,
+      color: '',
+      price: NaN,
+    });
+
+  };
 
   return (
     <div className="car-tool">
@@ -56,7 +66,7 @@ export const CarTool = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.cars.map(car => <tr key={car.id}>
+          {cars.map(car => <tr key={car.id}>
             <td>{car.id}</td>
             <td className="text">{car.make}</td>
             <td className="text">{car.model}</td>
@@ -67,31 +77,17 @@ export const CarTool = (props) => {
         </tbody>
       </table>
       <form>
-        <div>
-          <label>Make</label>
-          <input type="text" id="make-input" name="make"
-            value={carForm.make} onChange={change} />
-        </div>
-        <div>
-          <label>Model</label>
-          <input type="text" id="model-input" name="model"
-            value={carForm.model} onChange={change} />
-        </div>
-        <div>
-          <label>Year</label>
-          <input type="number" id="year-input" name="year"
-            value={nanToValue(carForm.year)} onChange={change} />
-        </div>
-        <div>
-          <label>Color</label>
-          <input type="text" id="color-input" name="color"
-            value={carForm.color} onChange={change} />
-        </div>
-        <div>
-          <label>Price</label>
-          <input type="number" id="price-input" name="price"
-            value={nanToValue(carForm.price)} onChange={change} />
-        </div>
+        <StringFormControl caption="Make" name="make"
+          value={carForm.make} onChange={change} />
+        <StringFormControl caption="Model" name="model"
+          value={carForm.model} onChange={change} />
+        <NumberFormControl caption="Year" name="year"
+          value={carForm.year} onChange={change} />
+        <StringFormControl caption="Color" name="color"
+          value={carForm.color} onChange={change} />
+        <NumberFormControl caption="Price" name="price"
+          value={carForm.price} onChange={change} />
+        <button type="button" onClick={addCar}>Add Car</button>
       </form>
     </div>
   );

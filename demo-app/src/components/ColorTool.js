@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './ColorTool.css';
 
+import { ToolHeader } from './ToolHeader';
+
 export const ColorTool = (props) => {
 
   const [ colors, setColors ] = useState(props.colors.concat());
@@ -50,9 +52,7 @@ export const ColorTool = (props) => {
 
   return (
     <div className="color-tool">
-      <header>
-        <h1>Color Tool</h1>
-      </header>
+      <ToolHeader headerText="Color Tool" />
       <ul>
         {colors.map( color => <li key={color.id}>
           {color.name}
