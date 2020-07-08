@@ -1,7 +1,32 @@
+.color-tool h1 {
+  font-size: 2rem;
+  font-weight: bold;
+}
 
-
-ul {
-  list-style-type: disc;
+.color-tool ul {
+  list-style-type: decimal;
   list-style-position: inside;
   margin: 10px;
+  margin-top: 20px;
+}
+
+.color-tool form {
+  margin-top: 20px;
+}
+
+.color-tool form div {
+  margin: 8px;
+}
+
+.color-tool form label {
+  display: inline-block;
+  width: 80px;
+}
+
+.color-tool form input {
+  width: 100px;
+  border: 1px solid slategray;
+  border-radius: 5px;
+  padding: 4px;
+  outline: none;
 }

@@ -32,7 +32,7 @@ export const ColorTool = (props) => {
   console.log(colorForm);
 
   return (
-    <>
+    <div className="color-tool">
       <header>
         <h1>Color Tool</h1>
       </header>
@@ -43,15 +43,15 @@ export const ColorTool = (props) => {
       </ul>
       <form>
         <div>
-          <label htmlFor="name-input">Name:</label>
+          <label htmlFor="name-input">Name</label>
           <input type="text" id="name-input" name="name" value={colorForm.name} onChange={change} />
         </div>
         <div>
-          <label htmlFor="hexcode-input">Hexcode:</label>
+          <label htmlFor="hexcode-input">Hexcode</label>
           <input type="text" id="hexcode-input" name="hexcode" value={colorForm.hexcode} onChange={change} />
         </div>
       </form>
-    </>
+    </div>
   );
 
 };

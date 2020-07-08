@@ -11,11 +11,17 @@ const colorList = [
   { id: 4, name: 'blue', hexcode: '0000FF' },
 ];
 
+const carList = [
+  { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2020, color: 'red', price: 45000 },
+  { id: 2, make: 'Tesla', model: 'S', year: 2019, color: 'blue', price: 120000 },
+  { id: 3, make: 'Nissan', model: 'Pathfinder', year: 2018, color: 'red', price: 40000 },
+  { id: 4, make: 'Chevrolet', model: 'Volt', year: 2017, color: 'green', price: 50000 },
+];
+
 ReactDOM.render(
-  // React.createElement(React.Fragement, null, React.createElement(ColorTool), React.createElement(CarTool)),
   <>
     <ColorTool colors={colorList} />
-    <CarTool />
+    <CarTool cars={carList} />
   </>,
   document.querySelector('#root'),
 );
