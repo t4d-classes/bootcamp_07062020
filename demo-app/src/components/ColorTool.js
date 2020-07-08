@@ -35,11 +35,13 @@ export const ColorTool = (props) => {
 
   const addColor = () => {
 
+    // adding a color to a new array of colors and setting the colors state to point to the new array
     setColors(colors.concat({
       ...colorForm,
       id: Math.max(...colors.map(c => c.id), 0) + 1,
     }));
 
+    // resetting the form to be blank
     setColorForm({
       name: '', hexcode: '',
     });
