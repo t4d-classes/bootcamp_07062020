@@ -92,17 +92,19 @@
     </script> -->
     <script>
 
-      /*
-      // defining
-      function doIt(fn) {
-        console.log(fn('hi!'));
+      function add(car) {
+        return msg;
       }
 
-      doIt(function message(msg /* where is msg coming from?) {
-        return msg;
-      });
-      */
 
+      CarForm(add);
+
+
+      function CarForm(onSubmitCar) {
+        console.log(onSubmitCar('hi!'));
+      }
+
+ 
       /*
       doIt(); // invoke
       const doIt2 = doIt; // assigning the function object reference to doIt2
