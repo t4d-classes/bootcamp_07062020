@@ -6,10 +6,6 @@ import { nanToValue } from '../utils';
 
 export const CarViewRow = ({ car, onDeleteCar }) => {
   
-  const deleteCar = () => {
-    onDeleteCar(car.id);
-  };
-
   return (
     <tr>
       <td>{car.id}</td>
@@ -19,7 +15,7 @@ export const CarViewRow = ({ car, onDeleteCar }) => {
       <td>{car.color}</td>
       <td className="number">{nanToValue(car.price)}</td>
       <td>
-        <button type="button" onClick={deleteCar}>Delete</button>
+        <button type="button" onClick={() => onDeleteCar(car.id)}>Delete</button>
       </td>
     </tr>
   );
