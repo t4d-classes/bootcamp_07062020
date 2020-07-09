@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
   StringFormControl,
   NumberFormControl,
 } from './FormControls';
-
-import { valueToNaN } from '../utils';
+import { useForm } from '../hooks/useForm';
 
 export const CarForm = ({ buttonText, onSubmitCar }) => {
 
-  const [ carForm, setCarForm ] = useState({
+  const [ carForm, change, resetCarForm ] = useForm({
     make: '',
     model: '',
     year: NaN,
@@ -18,26 +17,11 @@ export const CarForm = ({ buttonText, onSubmitCar }) => {
     price: NaN,
   });
 
-
-  const change = (e) => {
-    setCarForm({
-      ...carForm,
-      [ e.target.name ]: e.target.type === 'number'
-        ? valueToNaN(e.target.value)
-        : e.target.value,
-    });
-  };
-
   const submitCar = () => {
     onSubmitCar(carForm);
-    setCarForm({
-      make: '',
-      model: '',
-      year: NaN,
-      color: '',
-      price: NaN,
-    });
+    resetCarForm();
   };
+
   return (
     <form>
       {/*
