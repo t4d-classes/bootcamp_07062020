@@ -28,7 +28,7 @@ export const CarTool = (props) => {
       <ToolHeader headerText="Car Tool" />
       {/* React.createElement(CarTable, { cars: cars }); */}
       <CarTable cars={cars} editCarId={editCarId}
-        onEditCar={setEditCarId} onDeleteCar={deleteCar} />
+        onEditCar={editCar} onDeleteCar={deleteCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </div>
   );
