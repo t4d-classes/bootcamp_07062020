@@ -4,7 +4,11 @@ import { carPropTypes } from '../propTypes/cars';
 
 import { nanToValue } from '../utils';
 
-export const CarViewRow = ({ car }) => {
+export const CarViewRow = ({ car, onDeleteCar }) => {
+  
+  const deleteCar = () => {
+    onDeleteCar(car.id);
+  };
 
   return (
     <tr>
@@ -14,6 +18,9 @@ export const CarViewRow = ({ car }) => {
       <td>{nanToValue(car.year)}</td>
       <td>{car.color}</td>
       <td className="number">{nanToValue(car.price)}</td>
+      <td>
+        <button type="button" onClick={deleteCar}>Delete</button>
+      </td>
     </tr>
   );
 
