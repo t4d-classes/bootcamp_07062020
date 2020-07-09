@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import { carPropTypes } from '../propTypes/cars';
-
-import { valueToNaN } from '../utils';
+import { useForm } from '../hooks/useForm';
 import { NumberInput } from './NumberInput';
+
 
 export const CarEditRow = ({
   car,
@@ -12,22 +12,13 @@ export const CarEditRow = ({
   onCancelCar: cancelCar,
 }) => {
 
-  const [ carForm, setCarForm ] = useState({
+  const [ carForm, change ] = useForm({
     make: car.make,
     model: car.model,
     year: car.year,
     color: car.color,
     price: car.price,
   });
-
-  const change = (e) => {
-    setCarForm({
-      ...carForm,
-      [ e.target.name ]: e.target.type === 'number'
-        ? valueToNaN(e.target.value)
-        : e.target.value,
-    });
-  };
 
   const saveCar = () => {
     onSaveCar({
