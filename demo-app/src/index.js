@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { ColorTool } from './components/ColorTool';
+
+import { CarToolProvider } from './context/carToolContext';
+
 import { CarTool } from './components/CarTool';
 
 const colorList = [
@@ -11,17 +14,15 @@ const colorList = [
   { id: 4, name: 'blue', hexcode: '0000FF' },
 ];
 
-const carList = [
-  { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2020, color: 'red', price: 45000 },
-  { id: 2, make: 'Tesla', model: 'S', year: 2019, color: 'blue', price: 120000 },
-  { id: 3, make: 'Nissan', model: 'Pathfinder', year: 2018, color: 'red', price: 40000 },
-  { id: 4, make: 'Chevrolet', model: 'Volt', year: 2017, color: 'green', price: 50000 },
-];
+
 
 ReactDOM.render(
   <>
     <ColorTool colors={colorList} />
-    <CarTool cars={carList} />
+    <CarToolProvider>
+      <CarTool />
+    </CarToolProvider>
+    
   </>,
   document.querySelector('#root'),
 );

@@ -1,19 +1,19 @@
 import React from 'react';
 
-import { useCarTool } from '../hooks/useCarTool';
+import { useCarToolContext } from '../context/carToolContext';
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
 import "./CarTool.css";
 
-export const CarTool = (props) => {
+export const CarTool = () => {
 
   const {
     cars, editCarId,
     addCar, saveCar, deleteCar,
     editCar, cancelCar,
-  } = useCarTool(props.cars.concat());
+  } = useCarToolContext();
 
   return (
     <div className="car-tool">

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useList } from './useList';
 
-export const useCarTool = (initialCars) => {
+export const useCarToolStore = (initialCars) => {
 
   const [ cars, appendCar, replaceCar, removeCar ] = useList(initialCars.concat());
   const [ editCarId, setEditCarId ] = useState(-1);
