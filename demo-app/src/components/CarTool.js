@@ -17,10 +17,20 @@ export const CarTool = (props) => {
       ...car,
       id: Math.max(...cars.map(c => c.id), 0) + 1,
     }));
+    setEditCarId(-1);
+  };
+
+  const saveCar = (car) => {
+    const carIndex = cars.findIndex(c => c.id === car.id);
+    const newCars = cars.concat();
+    newCars[carIndex] = car; // replace old car with a new one
+    setCars(newCars);
+    setEditCarId(-1);
   };
 
   const deleteCar = (carId) => {
     setCars(cars.filter(c => c.id !== carId));
+    setEditCarId(-1);
   };
 
   return (
@@ -28,7 +38,8 @@ export const CarTool = (props) => {
       <ToolHeader headerText="Car Tool" />
       {/* React.createElement(CarTable, { cars: cars }); */}
       <CarTable cars={cars} editCarId={editCarId}
-        onEditCar={editCar} onDeleteCar={deleteCar} />
+        onEditCar={setEditCarId} onDeleteCar={deleteCar}
+        onSaveCar={saveCar} onCancelCar={() => setEditCarId(-1)} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </div>
   );

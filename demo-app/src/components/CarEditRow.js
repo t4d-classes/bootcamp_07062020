@@ -9,7 +9,7 @@ import { NumberInput } from './NumberInput';
 export const CarEditRow = ({
   car,
   onSaveCar,
-  onCancelCar,
+  onCancelCar: cancelCar,
 }) => {
 
   const [ carForm, setCarForm ] = useState({
@@ -28,6 +28,13 @@ export const CarEditRow = ({
         : e.target.value,
     });
   };
+
+  const saveCar = () => {
+    onSaveCar({
+      ...carForm,
+      id: car.id,
+    });
+  };
   
   return (
     <tr>
@@ -39,9 +46,9 @@ export const CarEditRow = ({
       <td><NumberInput name="price" value={carForm.price} onChange={change} /></td>
       <td>
         <button type="button"
-          onClick={onSaveCar}>Save</button>
+          onClick={saveCar}>Save</button>
         <button type="button"
-          onClick={onCancelCar}>Cancel</button>
+          onClick={cancelCar}>Cancel</button>
       </td>
     </tr>
   );
