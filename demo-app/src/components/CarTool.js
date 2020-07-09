@@ -10,6 +10,7 @@ import { CarForm } from './CarForm';
 export const CarTool = (props) => {
 
   const [ cars, setCars ] = useState(props.cars.concat());
+  const [ editCarId, setEditCarId ] = useState(-1);
 
   const addCar = (car) => {
     setCars(cars.concat({
@@ -26,7 +27,8 @@ export const CarTool = (props) => {
     <div className="car-tool">
       <ToolHeader headerText="Car Tool" />
       {/* React.createElement(CarTable, { cars: cars }); */}
-      <CarTable cars={cars} onDeleteCar={deleteCar} />
+      <CarTable cars={cars} editCarId={editCarId}
+        onEditCar={setEditCarId} onDeleteCar={deleteCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </div>
   );
