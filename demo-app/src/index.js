@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, bindActionCreators } from 'redux';
+import { createStore, bindActionCreators, combineReducers } from 'redux';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 
 const ADD_ACTION = 'ADD';
@@ -19,54 +19,39 @@ const createDivideAction = value => ({ type: DIVIDE_ACTION, payload: { value } }
 // 3. no side effects
 // 4. the only output is the return value
 
-const calcReducer = (state = { result: 0, history: [] }, action) => {
+const resultReducer = (result = 0, action) => {
 
   switch (action.type) {
     case ADD_ACTION:
-      return {
-        ...state,
-        result: state.result + action.payload.value,
-        history: state.history.concat({
-          id: Math.max(...state.history.map(he => he.id), 0) + 1,
-          opName: 'Add',
-          opValue: action.payload.value,
-        }),
-      };
+      return result + action.payload.value;
     case SUBTRACT_ACTION:
-      return {
-        ...state,
-        result: state.result - action.payload.value,
-        history: state.history.concat({
-          id: Math.max(...state.history.map(he => he.id), 0) + 1,
-          opName: 'Subtract',
-          opValue: action.payload.value,
-        }),
-      };
+      return result - action.payload.value;
     case MULTIPLY_ACTION:
-      return {
-        ...state,
-        result: state.result * action.payload.value,
-        history: state.history.concat({
-          id: Math.max(...state.history.map(he => he.id), 0) + 1,
-          opName: 'Multiply',
-          opValue: action.payload.value,
-        }),
-      };
+      return result * action.payload.value;
     case DIVIDE_ACTION:
-      return {
-        ...state,
-        result: state.result / action.payload.value,
-        history: state.history.concat({
-          id: Math.max(...state.history.map(he => he.id), 0) + 1,
-          opName: 'Divide',
-          opValue: action.payload.value,
-        }),
-      };
+      return result / action.payload.value;
     default:
-      return state;
+      return result;
+  }
+};
+
+const historyReducer = (history = [], action) => {
+
+  if ([ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION].includes(action.type)) {
+    return history.concat({
+      id: Math.max(...history.map(he => he.id), 0) + 1,
+      opName: action.type,
+      opValue: action.payload.value,
+    });
   }
 
+  return history;
 };
+
+const calcReducer = combineReducers({
+  result: resultReducer,
+  history: historyReducer,
+});
 
 const calcStore = createStore(calcReducer);
 
