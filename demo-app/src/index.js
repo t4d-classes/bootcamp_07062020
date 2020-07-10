@@ -7,11 +7,19 @@ const ADD_ACTION = 'ADD';
 const SUBTRACT_ACTION = 'SUBTRACT';
 const MULTIPLY_ACTION = 'MULTIPLY';
 const DIVIDE_ACTION = 'DIVIDE';
+const CLEAR_ACTION = 'CLEAR';
+const DELETE_HISTORY_ENTRY_ACTION = 'DELETE_HISTORY_ENTRY';
 
 const createAddAction = value => ({ type: ADD_ACTION, payload: { value } });
 const createSubtractAction = value => ({ type: SUBTRACT_ACTION, payload: { value } });
 const createMultiplyAction = value => ({ type: MULTIPLY_ACTION, payload: { value } });
 const createDivideAction = value => ({ type: DIVIDE_ACTION, payload: { value } });
+const createClearAction = () => ({ type: CLEAR_ACTION });
+const createDeleteHistoryEntryAction = historyEntryId =>
+  ({
+    type: DELETE_HISTORY_ENTRY_ACTION,
+    payload: { historyEntryId },
+  });
 
 // reducer - pure function
 // 1. the only data they can use is passed in via parameters
@@ -30,6 +38,8 @@ const resultReducer = (result = 0, action) => {
       return result * action.payload.value;
     case DIVIDE_ACTION:
       return result / action.payload.value;
+    case CLEAR_ACTION:
+      return 0;
     default:
       return result;
   }
@@ -43,6 +53,14 @@ const historyReducer = (history = [], action) => {
       opName: action.type,
       opValue: action.payload.value,
     });
+  }
+
+  if (action.type === DELETE_HISTORY_ENTRY_ACTION) {
+    return history.filter(he => he.id !== action.payload.historyEntryId);
+  }
+
+  if (action.type === CLEAR_ACTION) {
+    return [];
   }
 
   return history;
@@ -60,9 +78,15 @@ const CalcTool = ({
   result, history,
   onAdd: add, onSubtract: subtract,
   onMultiply: multiply, onDivide: divide,
+  onClear, onDeleteHistoryEntry: deleteHistoryEntry,
 }) => {
 
   const [ num, setNum ] = useState(0);
+
+  const clear = () => {
+    setNum(0);
+    onClear();
+  };
 
   return (
     <form>
@@ -77,10 +101,12 @@ const CalcTool = ({
         <button type="button" onClick={() => subtract(num)}>-</button>
         <button type="button" onClick={() => multiply(num)}>*</button>
         <button type="button" onClick={() => divide(num)}>/</button>
+        <button type="button" onClick={clear}>Clear</button>
       </fieldset>
       <ul>
         {history.map(historyEntry => <li key={historyEntry.id}>
           {historyEntry.opName} - {historyEntry.opValue}
+          <button type="button" onClick={() => deleteHistoryEntry(historyEntry.id)}>X</button>
         </li>)}
       </ul>
     </form>
@@ -93,6 +119,12 @@ const CalcToolContainer = () => {
   const result = useSelector(state => state.result);
   const history = useSelector(state => state.history);
 
+  const opCounts = useSelector(state => {
+
+    // use the state.history to compute the counts...
+
+  });
+
   // const onAdd = value => dispatch(createAddAction(value));
 
   const boundActions = bindActionCreators({
@@ -100,6 +132,8 @@ const CalcToolContainer = () => {
     onSubtract: createSubtractAction,
     onMultiply: createMultiplyAction,
     onDivide: createDivideAction,
+    onClear: createClearAction,
+    onDeleteHistoryEntry: createDeleteHistoryEntryAction,
   }, useDispatch());
 
   return <CalcTool result={result} history={history} {...boundActions} />;
