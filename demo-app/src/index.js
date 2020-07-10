@@ -5,9 +5,13 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 
 const ADD_ACTION = 'ADD';
 const SUBTRACT_ACTION = 'SUBTRACT';
+const MULTIPLY_ACTION = 'MULTIPLY';
+const DIVIDE_ACTION = 'DIVIDE';
 
 const createAddAction = value => ({ type: ADD_ACTION, payload: { value } });
 const createSubtractAction = value => ({ type: SUBTRACT_ACTION, payload: { value } });
+const createMultiplyAction = value => ({ type: MULTIPLY_ACTION, payload: { value } });
+const createDivideAction = value => ({ type: DIVIDE_ACTION, payload: { value } });
 
 
 const calcReducer = (state = { result: 0 }, action) => {
@@ -17,6 +21,10 @@ const calcReducer = (state = { result: 0 }, action) => {
       return { ...state, result: state.result + action.payload.value };
     case SUBTRACT_ACTION:
       return { ...state, result: state.result - action.payload.value };
+    case MULTIPLY_ACTION:
+      return { ...state, result: state.result * action.payload.value };
+    case DIVIDE_ACTION:
+      return { ...state, result: state.result / action.payload.value };
     default:
       return state;
   }
@@ -26,7 +34,11 @@ const calcReducer = (state = { result: 0 }, action) => {
 const calcStore = createStore(calcReducer);
 
 
-const CalcTool = ({ result, onAdd: add, onSubtract: subtract }) => {
+const CalcTool = ({
+  result,
+  onAdd: add, onSubtract: subtract,
+  onMultiply: multiply, onDivide: divide,
+}) => {
 
   const [ num, setNum ] = useState(0);
 
@@ -41,6 +53,8 @@ const CalcTool = ({ result, onAdd: add, onSubtract: subtract }) => {
       <fieldset>
         <button type="button" onClick={() => add(num)}>+</button>
         <button type="button" onClick={() => subtract(num)}>-</button>
+        <button type="button" onClick={() => multiply(num)}>*</button>
+        <button type="button" onClick={() => divide(num)}>/</button>
       </fieldset>
     </form>
   );
@@ -56,6 +70,8 @@ const CalcToolContainer = () => {
   const boundActions = bindActionCreators({
     onAdd: createAddAction,
     onSubtract: createSubtractAction,
+    onMultiply: createMultiplyAction,
+    onDivide: createDivideAction,
   }, useDispatch());
 
   return <CalcTool result={result} {...boundActions} />;
