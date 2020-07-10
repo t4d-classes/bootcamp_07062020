@@ -14,7 +14,8 @@ export const ColorTool = () => {
   return (
     <div className="color-tool">
       <ToolHeader headerText={ 'Color Tool' } />
-      <ItemList items={colors} contentFn={color => color.name}
+      <ItemList items={colors}
+        contentFn={color => color.name + ' ' + color.hexcode}
         actionButtonText="X" onAction={deleteColor} />
       <ColorForm buttonText="Add Color" onSubmitColor={addColor} />
     </div>

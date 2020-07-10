@@ -24,5 +24,6 @@ export const CarToolProvider = ({ children }) => {
 
 // retrieve data from the context
 export const useCarToolContext = () => {
+  // carToolContext.Consumer
   return useContext(carToolContext);
 };
