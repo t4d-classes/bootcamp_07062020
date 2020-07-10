@@ -13,6 +13,11 @@ const createSubtractAction = value => ({ type: SUBTRACT_ACTION, payload: { value
 const createMultiplyAction = value => ({ type: MULTIPLY_ACTION, payload: { value } });
 const createDivideAction = value => ({ type: DIVIDE_ACTION, payload: { value } });
 
+// reducer - pure function
+// 1. the only data they can use is passed in via parameters
+// 2. you cannot mutate the parameters
+// 3. no side effects
+// 4. the only output is the return value
 
 const calcReducer = (state = { result: 0 }, action) => {
 
