@@ -27,24 +27,6 @@ const createDeleteHistoryEntryAction = historyEntryId =>
 // 3. no side effects
 // 4. the only output is the return value
 
-const resultReducer = (result = 0, action) => {
-
-  switch (action.type) {
-    case ADD_ACTION:
-      return result + action.payload.value;
-    case SUBTRACT_ACTION:
-      return result - action.payload.value;
-    case MULTIPLY_ACTION:
-      return result * action.payload.value;
-    case DIVIDE_ACTION:
-      return result / action.payload.value;
-    case CLEAR_ACTION:
-      return 0;
-    default:
-      return result;
-  }
-};
-
 const historyReducer = (history = [], action) => {
 
   if ([ADD_ACTION, SUBTRACT_ACTION, MULTIPLY_ACTION, DIVIDE_ACTION].includes(action.type)) {
@@ -67,7 +49,6 @@ const historyReducer = (history = [], action) => {
 };
 
 const calcReducer = combineReducers({
-  result: resultReducer,
   history: historyReducer,
 });
 
@@ -75,7 +56,7 @@ const calcStore = createStore(calcReducer);
 
 
 const CalcTool = ({
-  result, history,
+  result, history, opCounts,
   onAdd: add, onSubtract: subtract,
   onMultiply: multiply, onDivide: divide,
   onClear, onDeleteHistoryEntry: deleteHistoryEntry,
@@ -109,6 +90,25 @@ const CalcTool = ({
           <button type="button" onClick={() => deleteHistoryEntry(historyEntry.id)}>X</button>
         </li>)}
       </ul>
+      <table>
+        <caption>Op Counts</caption>
+        <thead>
+          <tr>
+            <th>Add</th>
+            <th>Sub</th>
+            <th>Mul</th>
+            <th>Div</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{opCounts.add}</td>
+            <td>{opCounts.subtract}</td>
+            <td>{opCounts.multiply}</td>
+            <td>{opCounts.divide}</td>
+          </tr>
+        </tbody>
+      </table>
     </form>
   );
 
@@ -116,16 +116,41 @@ const CalcTool = ({
 
 const CalcToolContainer = () => {
 
-  const result = useSelector(state => state.result);
-  const history = useSelector(state => state.history);
+  const computedProps = useSelector(state => {
 
-  const opCounts = useSelector(state => {
+    let result = 0;
+    const opCounts = {
+      add: 0, subtract: 0, multiply: 0, divide: 0,
+    };
 
-    // use the state.history to compute the counts...
+    state.history.forEach(historyEntry => {
 
+      switch (historyEntry.opName) {
+        case 'ADD':
+          result += historyEntry.opValue;
+          opCounts.add++;
+          break;
+        case 'SUBTRACT':
+          result -= historyEntry.opValue;
+          opCounts.subtract++;
+          break;
+        case 'MULTIPLY':
+          result *= historyEntry.opValue;
+          opCounts.multiply++;
+          break;
+        case 'DIVIDE':
+          result /= historyEntry.opValue;
+          opCounts.divide++;
+          break;
+        default:
+          break;
+      }
+
+    });
+    return { result, opCounts };
   });
-
-  // const onAdd = value => dispatch(createAddAction(value));
+  
+  const history = useSelector(state => state.history);
 
   const boundActions = bindActionCreators({
     onAdd: createAddAction,
@@ -136,7 +161,7 @@ const CalcToolContainer = () => {
     onDeleteHistoryEntry: createDeleteHistoryEntryAction,
   }, useDispatch());
 
-  return <CalcTool result={result} history={history} {...boundActions} />;
+  return <CalcTool {...computedProps} history={history} {...boundActions} />;
 
 };
 
