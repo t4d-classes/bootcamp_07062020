@@ -1,15 +1,16 @@
 import React from 'react';
 
-import { useColorToolContext } from '../context/colorToolContext';
 import { ToolHeader } from './ToolHeader';
 import { ItemList } from './ItemList';
 import { ColorForm } from './ColorForm';
 
 import './ColorTool.css';
 
-export const ColorTool = () => {
-
-  const { colors, addColor, deleteColor } = useColorToolContext();
+export const ColorTool = ({
+  colors,
+  onAddColor: addColor,
+  onDeleteColor: deleteColor,
+}) => {
 
   return (
     <div className="color-tool">
