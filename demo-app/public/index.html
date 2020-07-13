@@ -298,9 +298,10 @@
       // After all three setTimeouts complete, run the allDone function
       // Rules:
       // 1. All three calls to setTimeout must be in the first task
-      // 2. You may not wrap the allDone in a setTimeout at all
+      // 2. You may not wrap the allDone in a fourth setTimeout
       // 3. You can modify the code as long as you do not change the setTimeout and console part
 
+      /*
       const allDone = () => {
         console.log('all done');
       };
@@ -316,9 +317,87 @@
       setTimeout(() => {
         console.log('c');
       }, 2000);
+      */
 
 
+      /*
+      class Promise {
 
+        constructor(fn) {
+
+          this.resolveFns = [];
+          this.rejectFns = [];
+
+          const resolve = (data) => {
+            this.resolveFns.forEach(resolveFn => {
+              resolveFn(data);
+            });
+          };
+
+          const reject = (data) => {
+            this.rejectFns.forEach(rejectFn => {
+              rejectFn(data);
+            });
+          };
+
+          fn(resolve, reject);
+        }
+
+        then(fn) {
+          this.resolveFns.push(fn);
+        }
+
+        catch(fn) {
+          this.rejectFns.push(fn);
+        }
+
+      }
+
+      */
+
+      /*
+      const p = new Promise((resolve, reject) => {
+
+        console.log('calling function');
+
+        // async operation - inside the promise
+        setTimeout(() => {
+          console.log('calling resolve');
+          resolve('a');
+        }, 2000);
+
+      });
+
+      p
+        .then((result) => {
+          console.log('done');
+          console.log(result);
+        })
+        .catch(() => {
+          console.log('something went wrong');
+        });
+
+      console.log('waiting');
+
+      */
+
+      const xhr = new XMLHttpRequest();
+
+      xhr.addEventListener('readystatechange', () => {
+
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(JSON.parse(xhr.responseText));
+        }
+
+      });
+
+      xhr.open('GET', 'http://localhost:3060/cars');
+      xhr.send();
+
+
+      // please create a myFetch function which works as described below
+
+      myFetch('http://localhost:3060/cars').then(cars => console.log(cars));
 
 
     </script>
