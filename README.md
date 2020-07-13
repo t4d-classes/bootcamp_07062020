@@ -25,7 +25,7 @@ The following instructions will help students pull down the instructor's version
 1. Clone this repository to a new folder. Do not attempt to copy these files over your version or another version which you have cloned. Replace `FOLDER_NAME` with the name of a new folder which will be created when the content is cloned.
 
 ```
-git clone git@github.com:t4d-classes/bootcamp_07062020.git FOLDER_NAME
+git clone https://github.com/t4d-classes/bootcamp_07062020.git FOLDER_NAME
 ```
 
 2. Change into the folder you cloned into.

@@ -91,7 +91,7 @@
 
     </script> -->
     <script>
-
+      /*
       function add(car) {
         return msg;
       }
@@ -103,7 +103,7 @@
       function CarForm(onSubmitCar) {
         console.log(onSubmitCar('hi!'));
       }
-
+      */
  
       /*
       doIt(); // invoke
@@ -381,24 +381,84 @@
 
       */
 
-      const xhr = new XMLHttpRequest();
+      /*
+      const myFetch =(url) => {
+        return new Promise(resolve => {
 
-      xhr.addEventListener('readystatechange', () => {
+          const xhr = new XMLHttpRequest();
 
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          console.log(JSON.parse(xhr.responseText));
-        }
-
-      });
-
-      xhr.open('GET', 'http://localhost:3060/cars');
-      xhr.send();
-
+          xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              resolve(JSON.parse(xhr.responseText));
+            }
+          });
+    
+          xhr.open('GET', url);
+          xhr.send();
+        });
+      };
 
       // please create a myFetch function which works as described below
 
-      myFetch('http://localhost:3060/cars').then(cars => console.log(cars));
+      const p = myFetch('http://localhost:3060/cars')
+      p.then(cars => console.log(cars));
 
+      */
+
+      /*
+      const task1 = () => new Promise(resolve => {
+        setTimeout(() => resolve('task 1'), 2000);
+      });
+
+      const task2 = () => new Promise(resolve => {
+        setTimeout(() => resolve('task 2'), 1000);
+      });
+
+      const task3 = () => new Promise(resolve => {
+        setTimeout(() => resolve('task 3'), 500);
+      });
+      */
+
+      /* promise version
+      const doWork = () => {
+        return task1()
+          .then(result => {
+            console.log(result);
+            return task2();
+          })
+          .then(result => {
+            console.log(result);
+            return task3();
+          })
+          .then(result => {
+            console.log(result);
+          });
+      };
+      */
+
+      /*
+      const doWork = async () => {
+
+        const result1 = await task1();
+        console.log(result1);
+
+        const result2 = await task2();
+        console.log(result2);
+
+        const result3 = await task3();
+        console.log(result3);
+      };
+
+
+      doWork().then(() => console.log('work is done'));
+
+      
+      /*
+      Promise.all([ task1(), task2(), task3() ]).then(results => {
+        console.log(results);
+        console.log('all done');
+      });
+      */
 
     </script>
 
