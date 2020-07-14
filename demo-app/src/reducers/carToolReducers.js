@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
 import {
-  ADD_CAR_ACTION, SAVE_CAR_ACTION, DELETE_CAR_ACTION,
+  SAVE_CAR_ACTION, DELETE_CAR_ACTION,
   EDIT_CAR_ACTION, CANCEL_CAR_ACTION, REFRESH_CARS_DONE_ACTION,
 } from '../actions/carToolActions';
 
@@ -15,11 +15,6 @@ export const carsReducer = (cars = [], action) => {
   switch (action.type) {
     case REFRESH_CARS_DONE_ACTION:
       return action.cars;
-    case ADD_CAR_ACTION:
-      return cars.concat({
-        ...action.car,
-        id: Math.max(...cars.map(c => c.id), 0) + 1,
-      });
     case SAVE_CAR_ACTION:
       const carIndex = cars.findIndex(c => c.id === action.car.id);
       const newCars = cars.concat();
@@ -40,7 +35,7 @@ export const editCarIdReducer = (editCarId = -1, action) => {
   }
 
   if ([
-    ADD_CAR_ACTION, SAVE_CAR_ACTION,
+    SAVE_CAR_ACTION,
     DELETE_CAR_ACTION, CANCEL_CAR_ACTION,
     REFRESH_CARS_DONE_ACTION,
   ].includes(action.type)) {
