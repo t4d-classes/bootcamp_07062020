@@ -1,3 +1,39 @@
 :root {
   font-family: arial;
 }
+
+#page-header, #page-footer {
+  background-color: navy;
+  color: white;
+}
+
+#page-header {
+  font-size: 3rem;
+}
+
+#page-header > h1 {
+  color: white;
+}
+
+#page-footer {
+  text-align: center;
+  padding-top: 10px;
+}
+
+#page-footer > small {
+  font-size: 0.75rem;
+}
+
+#menu {
+  background-color: gray;
+}
+
+#menu a {
+  color: white;
+  text-decoration: none;
+}
+
+#menu a:hover {
+  text-decoration: underline;
+}
+
