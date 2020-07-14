@@ -9,6 +9,7 @@ import {
 } from '../actions/carToolActions';
 
 import { CarTool } from '../components/CarTool';
+import { LoadingModal } from '../components/LoadingModal';
 
 export const CarToolContainer = () => {
 
@@ -34,5 +35,8 @@ export const CarToolContainer = () => {
   }, [ dispatchProps ]);
 
 
-  return <CarTool {...dispatchProps} {...stateProps} />;
+  return <>
+    <CarTool {...dispatchProps} {...stateProps} />
+    <LoadingModal isLoading={stateProps.isLoading} />
+  </>;
 };

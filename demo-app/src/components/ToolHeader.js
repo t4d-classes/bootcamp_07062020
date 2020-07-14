@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import './ToolHeader.css';
 
-export const ToolHeader = (props) => {
+export const ToolHeader = memo((props) => {
 
   return (
     <header className="tool-header">
@@ -11,7 +11,7 @@ export const ToolHeader = (props) => {
     </header>
   );
 
-};
+});
 
 ToolHeader.defaultProps = {
   headerText: 'The Tool',
