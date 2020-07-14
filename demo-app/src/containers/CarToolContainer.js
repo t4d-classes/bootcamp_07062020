@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
   createAddCarAction, createSaveCarAction,
   createDeleteCarAction, createEditCarAction,
-  createCancelCarAction
+  createCancelCarAction, refreshCars,
 } from '../actions/carToolActions';
 
 import { CarTool } from '../components/CarTool';
 
 export const CarToolContainer = () => {
 
-  const cars = useSelector(state => state.cars);
-  const editCarId = useSelector(state => state.editCarId);
+  const stateProps = useSelector(state => state);
 
-  const dispatchProps = bindActionCreators({
+  const dispatch = useDispatch();
+
+  // const onAddCar = car => dispatch(createAddCarAction(car));
+
+  const dispatchProps = useMemo(() => bindActionCreators({
+    onRefreshCars: refreshCars,
     onAddCar: createAddCarAction,
     onSaveCar: createSaveCarAction,
     onDeleteCar: createDeleteCarAction,
     onEditCar: createEditCarAction,
     onCancelCar: createCancelCarAction,
-  }, useDispatch());
+  }, dispatch), [ dispatch ]);
+
+  useEffect(() => {
+
+    dispatchProps.onRefreshCars();
+
+  }, [ dispatchProps ]);
 
 
-  return <CarTool {...dispatchProps} cars={cars} editCarId={editCarId} />;
+  return <CarTool {...dispatchProps} {...stateProps} />;
 };
