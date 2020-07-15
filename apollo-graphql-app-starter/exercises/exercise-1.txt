@@ -1,0 +1,7 @@
+# Exercise 1
+
+1. Build a GraphQL endpoint to return the array of cars.
+
+2. Build a GraphQL endpoint which will return a car by id.
+
+3. Ensure it works.
