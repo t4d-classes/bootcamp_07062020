@@ -1,5 +1,6 @@
 export const typeDefs = `
   type Query {
+    headerText: String
     message: String
     authors: [Author]
     author(authorId: ID): Author
@@ -8,6 +9,18 @@ export const typeDefs = `
     colors: [Color]
     cars: [Car]
     car(carId: ID): Car
+  }
+
+  type Mutation {
+    appendCar(car: AppendCar): Car
+  }
+
+  input AppendCar {
+    make: String
+    model: String
+    year: Int
+    color: String
+    price: Float
   }
 
   type Car {

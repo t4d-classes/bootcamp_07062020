@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useQuery } from 'react-apollo';
 import gql from 'graphql-tag';
 
+import { ToolHeader } from './components/ToolHeader';
+import { CarTable } from './components/CarTable';
+
 const APP_QUERY = gql`
   query AppQuery($authorId: ID) {
     message
@@ -14,6 +17,15 @@ const APP_QUERY = gql`
       id
       firstName
       age
+    }
+    headerText
+    cars {
+      id
+      make
+      model
+      year
+      color
+      price
     }
   }
 `;
@@ -35,5 +47,8 @@ export const App = () => {
     <div>
       First Name: {data.author.firstName}, Age: {data.author.age}
     </div>
+
+    <ToolHeader headerText={data.headerText} />
+    <CarTable cars={data.cars} />
   </>;
 };

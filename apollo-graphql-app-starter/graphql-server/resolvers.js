@@ -17,6 +17,7 @@ const authors = [
 
 export const resolvers = {
   Query: {
+    headerText: () => 'Car Tool',
     message: () => 'Hello World!',
     authors: () => authors,
     author: (_, { authorId }) => {
@@ -34,6 +35,16 @@ export const resolvers = {
         .then(res => res.json())
         .then(cars => cars.find(c => c.id === Number(carId)));
     }
+  },
+  Mutation: {
+    appendCar: (_, { car }, { restURL }) => {
+      return fetch(`${restURL}/cars`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(car),
+      })
+        .then(res => res.json());
+    },
   },
   Book: {
     // default impl
