@@ -40,6 +40,22 @@
       "color": "a",
       "price": 0,
       "id": 3
+    },
+    {
+      "make": "b",
+      "model": "b",
+      "year": 1900,
+      "color": "b",
+      "price": 0,
+      "id": 4
+    },
+    {
+      "make": "c",
+      "model": "c",
+      "year": 1900,
+      "color": "c",
+      "price": 0,
+      "id": 5
     }
   ],
   "widgets": [

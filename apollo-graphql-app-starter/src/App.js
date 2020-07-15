@@ -53,7 +53,25 @@ export const App = () => {
 
     mutateAppendCar({
       variables: { car },
-      refetchQueries: [ { query: APP_QUERY, variables: { authorId: 2 } } ],
+      // refetchQueries: [ { query: APP_QUERY, variables: { authorId: 2 } } ],
+      optimisticResponse: {
+        appendCar: {
+          ...car,
+          id: -1,
+          __typename: 'Car',
+        },
+      },
+      update(store, mutationResult) {
+
+        // called twice
+        // first time is with optimistic
+        // second time is with real result
+        console.log(mutationResult);
+
+        const data = store.readQuery({ query: APP_QUERY, variables: { authorId: 2 } });
+        data.cars = data.cars.concat(mutationResult.data.appendCar);
+        store.writeQuery({ query: APP_QUERY, variables: { authorId: 2 }, data });
+      }
     });
 
   };
