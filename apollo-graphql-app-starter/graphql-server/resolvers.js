@@ -45,6 +45,17 @@ export const resolvers = {
       })
         .then(res => res.json());
     },
+    deleteCar: async (_, { carId }, { restURL }) => {
+
+      // const res = await fetch(`${restURL}/cars/${encodeURIComponent(carId)}`);
+      // const car = await res.json();
+
+      // await fetch(`${restURL}/cars/${encodeURIComponent(carId)}`, { method: 'DELETE' });
+
+      return fetch(`${restURL}/cars/${encodeURIComponent(carId)}`, { method: 'DELETE' })
+        .then(() => carId);
+      // return car.id;
+    },
   },
   Book: {
     // default impl

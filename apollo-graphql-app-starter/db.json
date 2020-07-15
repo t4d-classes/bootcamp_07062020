@@ -34,11 +34,11 @@
       "price": 125000
     },
     {
-      "make": "A",
-      "model": "A",
+      "make": "a",
+      "model": "a",
       "year": 1900,
-      "color": "red",
-      "price": 12,
+      "color": "a",
+      "price": 0,
       "id": 3
     }
   ],
