@@ -3,8 +3,7 @@ import { bindActionCreators } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  addCar, createSaveCarAction,
-  createDeleteCarAction, createEditCarAction,
+  addCar, saveCar, deleteCar, createEditCarAction,
   createCancelCarAction, refreshCars,
 } from '../actions/carToolActions';
 
@@ -17,13 +16,11 @@ export const CarToolContainer = () => {
 
   const dispatch = useDispatch();
 
-  // const onAddCar = car => dispatch(createAddCarAction(car));
-
   const dispatchProps = useMemo(() => bindActionCreators({
     onRefreshCars: refreshCars,
     onAddCar: addCar,
-    onSaveCar: createSaveCarAction,
-    onDeleteCar: createDeleteCarAction,
+    onSaveCar: saveCar,
+    onDeleteCar: deleteCar,
     onEditCar: createEditCarAction,
     onCancelCar: createCancelCarAction,
   }, dispatch), [ dispatch ]);

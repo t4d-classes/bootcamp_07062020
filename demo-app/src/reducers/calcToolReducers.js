@@ -25,6 +25,6 @@ export const historyReducer = (history = [], action) => {
   return history;
 };
 
-export const calcReducer = combineReducers({
+export const calcToolReducer = combineReducers({
   history: historyReducer,
 });

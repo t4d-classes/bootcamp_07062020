@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import { calcReducer } from '../reducers/calcToolReducers';
+import { calcToolReducer } from '../reducers/calcToolReducers';
 
-export const calcStore = createStore(calcReducer);
+export const calcToolStore = createStore(calcToolReducer);

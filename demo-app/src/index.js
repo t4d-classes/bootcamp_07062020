@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import { colorToolStore } from './stores/colorToolStore';
 import { carToolStore } from './stores/carToolStore';
-import { calcStore } from './stores/calcToolStore';
+import { calcToolStore } from './stores/calcToolStore';
 
 import { ColorToolContainer } from './containers/ColorToolContainer';
 import { CarToolContainer } from './containers/CarToolContainer';
@@ -43,7 +43,7 @@ ReactDOM.render(
             </Provider>
           </Route>
           <Route path="/calc-tool">
-            <Provider store={calcStore}>
+            <Provider store={calcToolStore}>
               <CalcToolContainer />
             </Provider>
           </Route>

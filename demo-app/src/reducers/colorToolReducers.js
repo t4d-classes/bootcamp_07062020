@@ -1,24 +1,30 @@
-import { ADD_COLOR_ACTION, DELETE_COLOR_ACTION } from '../actions/colorToolActions';
+import { combineReducers } from 'redux';
 
-const initialColorList = [
-  { id: 1, name: 'red', hexcode: '#FF0000' },
-  { id: 2, name: 'green', hexcode: '#00FF00' },
-  { id: 3, name: 'blue', hexcode: '#0000FF' },
-];
+import { REFRESH_COLORS_DONE_ACTION } from '../actions/colorToolActions';
 
-export const colorReducer = (colors = initialColorList, action) => {
+export const colorsReducer = (colors = [], action) => {
 
-  if (action.type === ADD_COLOR_ACTION) {
-    return colors.concat({
-      ...action.color,
-      id: Math.max(...colors.map(c => c.id), 0) + 1,
-    });
-  }
-
-  if (action.type === DELETE_COLOR_ACTION) {
-    return colors.filter(c => c.id !== action.colorId);
+  if (action.type === REFRESH_COLORS_DONE_ACTION) {
+    return action.colors;
   }
 
   return colors;
-
 };
+
+export const isLoadingReducer = (isLoading = false, action) => {
+
+  if (action.type.endsWith('_REQUEST')) {
+    return true;
+  }
+
+  if (action.type.endsWith('_DONE')) {
+    return false;
+  }
+
+  return isLoading;
+};
+
+export const colorToolReducer = combineReducers({
+  isLoading: isLoadingReducer,
+  colors: colorsReducer,
+});
