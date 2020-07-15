@@ -1,0 +1,7 @@
+# Exercise 2
+
+1. Using the Car Table component, display a table cars populated from the GraphQL server.
+
+2. Add a new GraphQL Query endpoint named "headerText". Hard code the value of "headerText" in the resolve to be "Car Tool". Use the Tool Header component to display the value of the "headerText" query endpoint.
+
+3. Ensure it works.

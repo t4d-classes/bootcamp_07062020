@@ -25,6 +25,15 @@ export const resolvers = {
     books: () => books,
     colors: () => fetch('http://localhost:3040/colors')
       .then(res => res.json()),
+    cars: () => fetch('http://localhost:3040/cars')
+      .then(res => res.json()),
+    car: (_, { carId }) => {
+      // return fetch('http://localhost:3040/cars/' + carId)
+      //   .then(res => res.json());
+      return fetch('http://localhost:3040/cars')
+        .then(res => res.json())
+        .then(cars => cars.find(c => c.id === Number(carId)));
+    }
   },
   Book: {
     // default impl

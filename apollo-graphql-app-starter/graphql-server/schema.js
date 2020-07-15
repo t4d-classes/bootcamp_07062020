@@ -6,6 +6,17 @@ export const typeDefs = `
     books: [Book]
     book(bookId: ID): Book
     colors: [Color]
+    cars: [Car]
+    car(carId: ID): Car
+  }
+
+  type Car {
+    id: ID
+    make: String
+    model: String
+    year: Int
+    color: String
+    price: Float
   }
 
   type Color {
