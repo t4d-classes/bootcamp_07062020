@@ -1,0 +1,5 @@
+# Exercise 3
+
+1. Implement and run the delete mutation to delete a car.
+
+2. Ensure it works!

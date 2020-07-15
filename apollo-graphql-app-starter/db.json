@@ -32,6 +32,14 @@
       "year": 2018,
       "color": "red",
       "price": 125000
+    },
+    {
+      "make": "A",
+      "model": "A",
+      "year": 1900,
+      "color": "red",
+      "price": 12,
+      "id": 3
     }
   ],
   "widgets": [
