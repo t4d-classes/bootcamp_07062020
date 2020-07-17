@@ -84,18 +84,9 @@ describe('<CarForm /> Shallow with Enzyme', () => {
 
   });
 
-  test('<CarForm /> renders', (/* done */) => {
+  test('<CarForm /> renders', () => {
 
     expect(wrapper.find('button').text()).toBe('Add Car');
-
-    // setTimeout(() => {
-    //   done();
-    // })
-
-    // actions.refreshCars().then(cars => {
-    //   expect(cars).toBe(cars);
-    //   done();
-    // })
 
   });
 

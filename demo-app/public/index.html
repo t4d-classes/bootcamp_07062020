@@ -462,7 +462,45 @@
       */
 
     </script>
+    <script>
 
+      'use strict';
+
+      function doIt() {
+        
+        console.log(this);
+
+        // const that = this;
+
+        const inner = () => {
+          console.log(this);
+        }
+
+        inner();
+      }
+
+
+      const o = {
+        id: 2,
+        doIt: doIt,
+      };
+
+      o.doIt();
+
+      /*
+
+      doIt();
+
+      window.doIt();
+
+      o.doIt();
+
+      console.log(o.doIt === window.doIt);
+
+      setTimeout(() => o.doIt(), 2000);
+
+      */
+    </script>
 
   </body>
 </html>
